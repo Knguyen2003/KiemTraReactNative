@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useDispatch, useSelector } from 'react-redux';
-import { addTodo, toggleTodo } from '../reduxtoolkit/todosSlice';
 import styles from '../components/home/homeStyle';
 import sTask from '../components/home/TaskStyle';
 import sAdd from '../components/home/AddStyle';
 
-const Add = ({ navigation }) => {
-  const [input, setInput] = useState(''); // Quản lý giá trị input
+
+import { useDispatch } from 'react-redux';
+import { addJob} from '../reduxtoolkit/taskSlice';
+
+const Add = ({ navigation,route }) => {
+  const {job} = route.params;
+  const [task, setTitle] = useState('');
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.items); 
 
- const handleAddTodo = () => {
-  if (input.trim()) {
-    dispatch(addTodo(input)); 
-    setInput('');
-    navigation.navigate('Task'); 
-  } else {
-    alert("Please enter a valid todo."); 
-  }
-};
-
+  const handleSave = () => {
+      dispatch(addJob({ task }));
+      navigation.goBack();
+  };
+  
 
   return (
     <View style={{ flex: 1, padding: 15 }}>
@@ -48,11 +45,11 @@ const Add = ({ navigation }) => {
             style={styles.input}
             placeholder="Input your job"
             placeholderTextColor="#888"
-            onChangeText={(text) => setInput(text)} 
-            value={input}
+            onChangeText={(text) => setTitle(text)} 
+            value={task}
           />
         </View>
-        <TouchableOpacity style={sAdd.buttonView} onPress={handleAddTodo}>
+        <TouchableOpacity style={sAdd.buttonView} onPress={handleSave}>
           <Text style={sAdd.textButton}>FINISH -></Text>
         </TouchableOpacity>
       </View>

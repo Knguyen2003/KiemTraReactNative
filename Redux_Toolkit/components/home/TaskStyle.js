@@ -44,6 +44,16 @@ const Stask = StyleSheet.create({
     borderRadius :20,
     marginBottom:10,
   },
+  viewTask :{
+    backgroundColor:'lightgray', 
+    paddingHorizontal:10,
+    flexDirection:'row',
+    justifyContent:'space-between', 
+    marginBottom:10, 
+    alignItems:'center', 
+    borderRadius:10, 
+    paddingVertical:10
+  },
   footer: {
     flex: 2,
     alignItems :'center',

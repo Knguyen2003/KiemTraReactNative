@@ -17,9 +17,8 @@ import Task from './pages/screen2'
 import Add from './pages/screen3'
 
 import { Provider } from 'react-redux';
-import store from './reduxsaga/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataRequest } from './reduxsaga/actions';
+import store from './reduxtoolkit/store';
+
 
 
 
